@@ -43,4 +43,42 @@ void Init()
 
   // Incializa Automático
   Auto.AutoG7 = MovePosicaoInicial;
+
+  // Dados mocados para teste
+  int i = 0;
+  parametros.cores[i].r = 0.27;
+  parametros.cores[i].g = 0.38;
+  parametros.cores[i].b = 0.34;
+  parametros.cores[i].numeroColetor = 0;
+  i++;
+  parametros.cores[i].r = 0.61; // vermelhor
+  parametros.cores[i].g = 0.21;
+  parametros.cores[i].b = 0.17;
+  parametros.cores[i].numeroColetor = 4;
+  i++;
+  parametros.cores[i].r = 0.26; // verde
+  parametros.cores[i].g = 0.47;
+  parametros.cores[i].b = 0.27;
+  parametros.cores[i].numeroColetor = 3;
+  i++;
+  parametros.cores[i].r = 0.36; // roxo
+  parametros.cores[i].g = 0.29;
+  parametros.cores[i].b = 0.35;
+  parametros.cores[i].numeroColetor = 2;
+  i++;
+  parametros.cores[i].r = 0.66; // laranja
+  parametros.cores[i].g = 0.21;
+  parametros.cores[i].b = 0.13;
+  parametros.cores[i].numeroColetor = 1;
+  i++;
+  parametros.cores[i].r = 0.40; // amarelo
+  parametros.cores[i].g = 0.43;
+  parametros.cores[i].b = 0.17;
+  parametros.cores[i].numeroColetor = 2;  i++;
+  i++;
+  parametros.cores[i].r = 0.22;
+  parametros.cores[i].g = 0.36; // azul
+  parametros.cores[i].b = 0.42;
+  parametros.cores[i].numeroColetor = 4;
+
 }

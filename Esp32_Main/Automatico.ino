@@ -1,30 +1,3 @@
-enum G7_Auto // Define etapas automático
-{
-  MovePosicaoInicial,
-  AguardaPresencaPeca,
-  MovimentaSeparadores,
-  AbrePorta,
-  AguardaColetor,
-  ContabilizaPeca,
-  FechaPorta,
-  GravaLog
-};
-
-struct AutoDB // Define variaváveis do automático
-{
-  G7_Auto AutoG7;
-
-  int posicaoColetor = 0;
-
-  bool movePosicaoInicial = false;
-  bool movePosicaoColetor = false;
-  bool calculaCor = false;
-  bool abrePorta = false;
-  bool fechaPorta = false;
-};
-
-AutoDB Auto;
- 
 void Automatico() 
 {
   switch (Auto.AutoG7)
@@ -53,6 +26,7 @@ void Automatico()
     case MovimentaSeparadores:
     {
       Auto.posicaoColetor = SensorCor.corAtual.numeroColetor;
+      Auto.numeroCor = SensorCor.numeroCor;
       Auto.movePosicaoColetor = true;
       if (movimentoConcluido)
       {
@@ -77,7 +51,33 @@ void Automatico()
 
     case AguardaColetor:
     {
-      
+      delay(5000);
+      Auto.AutoG7 = ContabilizaPeca;
+      break;
+    }
+
+    case ContabilizaPeca:
+    {
+      dados.PecasSeparadasPorCor[Auto.numeroCor]++;
+      dados.PecasSeparadasPorColetor[Auto.posicaoColetor]++;
+      Auto.AutoG7 = FechaPorta;
+      break;
+    }
+
+    case FechaPorta:
+    {
+      Auto.fechaPorta = true;
+      if (movimentoConcluido)
+      {
+        Auto.fechaPorta = false;
+        movimentoConcluido = false;
+        Auto.AutoG7 = GravaLog;
+      }
+      break;
+    }
+    case GravaLog:
+    {
+      Auto.AutoG7 = AguardaPresencaPeca;
       break;
     }
   }
