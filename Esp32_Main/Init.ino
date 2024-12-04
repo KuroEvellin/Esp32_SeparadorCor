@@ -10,16 +10,8 @@ void Init()
   // Incia LCD
   lcd.init();
 
-  // Inicia o sensor e diz se ele conectou ou não
-  if (sensTCS.begin()) 
-  {
-    Serial.println("Sensor conectado");
-  }
-  else 
-  { 
-    // Se o sensor não conectou , mostra a mensagem de erro
-    Serial.println("Sensor com problema");
-  } 
+  // Inicia sensor de cor
+  SensorCorInit();
 
   // Inicia Cartão SD
   if (!SD.begin()) 
