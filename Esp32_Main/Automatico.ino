@@ -59,7 +59,7 @@ void Automatico()
     case ContabilizaPeca:
     {
       dados.PecasSeparadasPorCor[Auto.numeroCor]++;
-      dados.PecasSeparadasPorColetor[Auto.posicaoColetor]++;
+      dados.PecasSeparadasPorColetor[Auto.posicaoColetor - 1]++;
       Auto.AutoG7 = FechaPorta;
       break;
     }
@@ -78,6 +78,8 @@ void Automatico()
 
     case GravaLog:
     {
+      GravaDadosSD(SD, "/Teste");
+      delay(100);
       Auto.AutoG7 = AguardaPresencaPeca;
       break;
     }

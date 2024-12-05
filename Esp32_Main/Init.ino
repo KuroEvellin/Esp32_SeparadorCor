@@ -9,6 +9,8 @@ void Init()
 
   // Incia LCD
   lcd.init();
+  lcd.clear();
+  lcd.setBacklight(HIGH);
 
   // Inicia sensor de cor
   SensorCorInit();
@@ -45,43 +47,39 @@ void Init()
   Auto.AutoG7 = MovePosicaoInicial;
 
   // Carrega dados salvos SD
-
+  CarregaDadosSD(SD, "/Teste");
 
   // Dados mocados para teste
   int i = 0;
-  parametros.cores[i].r = 0.27;
-  parametros.cores[i].g = 0.38;
-  parametros.cores[i].b = 0.34;
+  parametros.cores[i].r = 0.39;
+  parametros.cores[i].g = 0.32;
+  parametros.cores[i].b = 0.29;
   parametros.cores[i].numeroColetor = 0;
   i++;
-  parametros.cores[i].r = 0.61; // vermelho
-  parametros.cores[i].g = 0.21;
-  parametros.cores[i].b = 0.17;
+  parametros.cores[i].r = 0.32; // azul
+  parametros.cores[i].g = 0.32;
+  parametros.cores[i].b = 0.36;
   parametros.cores[i].numeroColetor = 4;
   i++;
-  parametros.cores[i].r = 0.26; // verde
-  parametros.cores[i].g = 0.47;
-  parametros.cores[i].b = 0.27;
+  parametros.cores[i].r = 0.44; // amarelo
+  parametros.cores[i].g = 0.38;
+  parametros.cores[i].b = 0.18;
   parametros.cores[i].numeroColetor = 3;
   i++;
-  parametros.cores[i].r = 0.36; // roxo
-  parametros.cores[i].g = 0.29;
-  parametros.cores[i].b = 0.35;
+  parametros.cores[i].r = 0.61; // vermelho
+  parametros.cores[i].g = 0.22;
+  parametros.cores[i].b = 0.17;
   parametros.cores[i].numeroColetor = 2;
   i++;
-  parametros.cores[i].r = 0.60; // laranja
-  parametros.cores[i].g = 0.21;
-  parametros.cores[i].b = 0.19;
+  parametros.cores[i].r = 0.29; // verde
+  parametros.cores[i].g = 0.44;
+  parametros.cores[i].b = 0.26;
   parametros.cores[i].numeroColetor = 1;
   i++;
-  parametros.cores[i].r = 0.40; // amarelo
-  parametros.cores[i].g = 0.43;
-  parametros.cores[i].b = 0.17;
-  parametros.cores[i].numeroColetor = 2;  i++;
-  i++;
-  parametros.cores[i].r = 0.22;
-  parametros.cores[i].g = 0.36; // azul
-  parametros.cores[i].b = 0.42;
-  parametros.cores[i].numeroColetor = 4;
+  parametros.cores[i].r = 0.40; // roxo
+  parametros.cores[i].g = 0.27;
+  parametros.cores[i].b = 0.34;
+  parametros.cores[i].numeroColetor = 2;
+  
 
 }
