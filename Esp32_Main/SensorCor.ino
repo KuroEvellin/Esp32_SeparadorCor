@@ -64,5 +64,4 @@ void JulgaCor()
   Serial.print(posicaoColetor);
   Serial.print(" Cor: ");
   Serial.println(corMaisProxima);
-
 }

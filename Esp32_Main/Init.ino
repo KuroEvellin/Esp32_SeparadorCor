@@ -49,6 +49,7 @@ void Init()
   CarregaDadosSD(SD, "/Teste");
 
   // Dados mocados para teste
+  /*
   int i = 0;
   parametros.cores[i].r = 0.39;
   parametros.cores[i].g = 0.32;
@@ -79,6 +80,5 @@ void Init()
   parametros.cores[i].g = 0.27;
   parametros.cores[i].b = 0.34;
   parametros.cores[i].numeroColetor = 2;
-  
-
+  */
 }
