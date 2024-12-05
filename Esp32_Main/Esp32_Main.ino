@@ -15,10 +15,10 @@ struct Cor // Declara estrutura para as cores
 
 struct Parametros // Lista de parametros da máquina, utilizado para gravar nos arquivos persistentes e posterior troca com app
 {
-  int PosicaoServoPorta[2] = {0, 90};
-  int PosicaoServoDirecionadorED[2] = {85, 115};
-  int PosicaoServoDirecionador12[2] = {85, 115};
-  int PosicaoServoDirecionador34[2] = {85, 115};
+  int PosicaoServoPorta[2] = {90, 0};
+  int PosicaoServoDirecionadorED[2] = {72, 105};
+  int PosicaoServoDirecionador12[2] = {70, 100};
+  int PosicaoServoDirecionador34[2] = {80, 115};
 
   Cor cores[QUANTIDADE_CORES];
 };
@@ -82,6 +82,10 @@ void loop()
   SensorCorMain();
   Automatico();
   ServosMain();
+  //porta.write(90);
+  //direcionadorED.write(90);
+  //direcionador12.write(90);
+  //direcionador34.write(90);
 
   lcd.clear();
   lcd.setBacklight(HIGH);

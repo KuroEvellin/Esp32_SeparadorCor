@@ -34,7 +34,7 @@ void ServoMovimentaColetor(int numeroColetor)
   if (numeroColetor <= 2 )
   {
     direcionadorED.write(parametros.PosicaoServoDirecionadorED[0]);
-    delay(500);
+    delay(200);
     if (numeroColetor == 1)
     {
       direcionador12.write(parametros.PosicaoServoDirecionador12[0]);
@@ -47,31 +47,31 @@ void ServoMovimentaColetor(int numeroColetor)
   else
   {
     direcionadorED.write(parametros.PosicaoServoDirecionadorED[1]);
-    delay(500);
+    delay(200);
     if (numeroColetor == 3)
     {
-      direcionador12.write(parametros.PosicaoServoDirecionador34[0]);
+      direcionador34.write(parametros.PosicaoServoDirecionador34[0]);
     }
     else
     {
-      direcionador12.write(parametros.PosicaoServoDirecionador34[1]);
+      direcionador34.write(parametros.PosicaoServoDirecionador34[1]);
     }
   }
-  delay(500);
+  delay(200);
   movimentoConcluido = true;
 }
 
 void ServoAbrePorta()
 {
   porta.write(parametros.PosicaoServoPorta[0]);
-  delay(500);
+  delay(200);
   movimentoConcluido = true;
 }
 
 void ServoFechaPorta()
 {
   porta.write(parametros.PosicaoServoPorta[1]);
-  delay(500);
+  delay(200);
   movimentoConcluido = true;
 }
 

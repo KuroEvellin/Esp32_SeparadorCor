@@ -38,9 +38,6 @@ void JulgaCor()
   for (int i = 0; i < QUANTIDADE_CORES; i++)
   {
     float distancia = sqrt(pow(rn - parametros.cores[i].r, 2) + pow(gn - parametros.cores[i].g, 2) + pow(bn - parametros.cores[i].b, 2));
-    Serial.print(i);
-    Serial.print(": ");
-    Serial.println(distancia);
     if (distancia < menorDistancia)
     {
       menorDistancia = distancia;

@@ -51,7 +51,7 @@ void Automatico()
 
     case AguardaColetor:
     {
-      delay(5000);
+      delay(2500);
       Auto.AutoG7 = ContabilizaPeca;
       break;
     }
@@ -75,6 +75,7 @@ void Automatico()
       }
       break;
     }
+
     case GravaLog:
     {
       Auto.AutoG7 = AguardaPresencaPeca;

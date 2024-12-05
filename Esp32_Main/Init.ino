@@ -44,6 +44,9 @@ void Init()
   // Incializa Automático
   Auto.AutoG7 = MovePosicaoInicial;
 
+  // Carrega dados salvos SD
+
+
   // Dados mocados para teste
   int i = 0;
   parametros.cores[i].r = 0.27;
@@ -51,7 +54,7 @@ void Init()
   parametros.cores[i].b = 0.34;
   parametros.cores[i].numeroColetor = 0;
   i++;
-  parametros.cores[i].r = 0.61; // vermelhor
+  parametros.cores[i].r = 0.61; // vermelho
   parametros.cores[i].g = 0.21;
   parametros.cores[i].b = 0.17;
   parametros.cores[i].numeroColetor = 4;
@@ -66,9 +69,9 @@ void Init()
   parametros.cores[i].b = 0.35;
   parametros.cores[i].numeroColetor = 2;
   i++;
-  parametros.cores[i].r = 0.66; // laranja
+  parametros.cores[i].r = 0.60; // laranja
   parametros.cores[i].g = 0.21;
-  parametros.cores[i].b = 0.13;
+  parametros.cores[i].b = 0.19;
   parametros.cores[i].numeroColetor = 1;
   i++;
   parametros.cores[i].r = 0.40; // amarelo
