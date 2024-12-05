@@ -9,7 +9,6 @@ void Init()
 
   // Incia LCD
   lcd.init();
-  lcd.clear();
   lcd.setBacklight(HIGH);
 
   // Inicia sensor de cor

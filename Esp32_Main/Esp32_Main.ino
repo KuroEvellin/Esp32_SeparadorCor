@@ -79,12 +79,11 @@ void setup()
 }
 void loop() 
 {
+  
   SensorCorMain();
   Automatico();
   ServosMain();
 
-  lcd.setCursor(0,0);
-  lcd.print(Auto.AutoG7);
   lcd.setCursor(0,1);
   lcd.print(dados.PecasSeparadasPorColetor[0]);
   lcd.print(" ");

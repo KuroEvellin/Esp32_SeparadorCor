@@ -4,24 +4,6 @@ struct DadosSD
   Dados dados;
 };
 
-/*
-struct Parametros // Lista de parametros da máquina, utilizado para gravar nos arquivos persistentes e posterior troca com app
-{
-  int PosicaoServoPorta[2] = {90, 0};
-  int PosicaoServoDirecionadorED[2] = {72, 105};
-  int PosicaoServoDirecionador12[2] = {70, 100};
-  int PosicaoServoDirecionador34[2] = {80, 115};
-
-  Cor cores[QUANTIDADE_CORES];
-};
-
-struct Dados // Lista de dados, como contadores, utilizado para gravar nos arquivos persistentes e posterior troca com app
-{
-  int PecasSeparadasPorCor[QUANTIDADE_CORES];
-  int PecasSeparadasPorColetor[4];
-};
-*/
-
 DadosSD persistencia;
 
 void CarregaPersistencia()

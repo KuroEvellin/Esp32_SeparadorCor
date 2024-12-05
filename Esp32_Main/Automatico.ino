@@ -1,9 +1,11 @@
 void Automatico() 
 {
+  lcd.setCursor(0,0);
   switch (Auto.AutoG7)
-  {
+  { 
     case MovePosicaoInicial:
     {
+      lcd.print("Reposicionando...");
       Auto.movePosicaoInicial = true;
       if (movimentoConcluido)
       {
@@ -16,6 +18,7 @@ void Automatico()
 
     case AguardaPresencaPeca:
     {
+      lcd.print("Aguardando peca");
       if (SensorCor.corAtual.numeroColetor != 0)
       {
         Auto.AutoG7 = MovimentaSeparadores;
@@ -25,6 +28,7 @@ void Automatico()
 
     case MovimentaSeparadores:
     {
+      lcd.print("Movi. Separador...");
       Auto.posicaoColetor = SensorCor.corAtual.numeroColetor;
       Auto.numeroCor = SensorCor.numeroCor;
       Auto.movePosicaoColetor = true;
@@ -39,6 +43,7 @@ void Automatico()
 
     case AbrePorta:
     {
+      lcd.print("Abrindo porta...");
       Auto.abrePorta = true;
       if (movimentoConcluido)
       {
@@ -51,13 +56,15 @@ void Automatico()
 
     case AguardaColetor:
     {
-      delay(2500);
+      lcd.print("Aguarda coletor...");
+      delay(2000);
       Auto.AutoG7 = ContabilizaPeca;
       break;
     }
 
     case ContabilizaPeca:
     {
+      lcd.print("Contabiliza peca...");
       dados.PecasSeparadasPorCor[Auto.numeroCor]++;
       dados.PecasSeparadasPorColetor[Auto.posicaoColetor - 1]++;
       Auto.AutoG7 = FechaPorta;
@@ -66,6 +73,7 @@ void Automatico()
 
     case FechaPorta:
     {
+      lcd.print("Fechando porta...");
       Auto.fechaPorta = true;
       if (movimentoConcluido)
       {
@@ -78,11 +86,10 @@ void Automatico()
 
     case GravaLog:
     {
+      lcd.print("Gravando dados...");
       GravaDadosSD(SD, "/Teste");
-      delay(100);
       Auto.AutoG7 = AguardaPresencaPeca;
       break;
     }
   }
-
 }
