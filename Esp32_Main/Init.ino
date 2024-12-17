@@ -48,6 +48,17 @@ void Init()
   // Carrega dados salvos SD
   CarregaDadosSD(SD, "/Teste");
 
+  // Inicializa Comunicação
+  if(conectarWiFi()) {
+    // Caso conecte com WiFi, irá tentar conexão com Broker
+    espClient.setInsecure();
+    client.setServer(parametros.mqtt_server, parametros.mqtt_port);
+    client.setCallback(callback);
+    if(conectarMQTT()) {
+      publicarMensagem("conexaoESP", "Conexão Iniciada", 0);
+    }
+  }
+
   // Dados mocados para teste
   /*
   int i = 0;
