@@ -4,7 +4,12 @@
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
+#include <WiFi.h>
+#include <ArduinoJson.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
 
+#define MQTT_VERSION MQTT_VERSION_3_1_1
 #define QUANTIDADE_CORES 8
 
 struct Cor // Declara estrutura para as cores
@@ -21,6 +26,16 @@ struct Parametros // Lista de parametros da máquina, utilizado para gravar nos 
   int PosicaoServoDirecionador34[2] = {80, 115};
 
   Cor cores[QUANTIDADE_CORES];
+
+  // Configurações de WiFi
+  char* ssid = "your_wifi_ssid";
+  char* password = "your_wifi_password";
+
+  // Configurações do Broker MQTT
+  char* mqtt_server = "34bab4bb63014dce9e71f4ad8fb6ffc2.s2.eu.hivemq.cloud";
+  char* mqtt_username = "your_mqtt_client_username";
+  char* mqtt_password = "your_mqtt_client_password";
+  int mqtt_port =8883;
 };
 
 struct Dados // Lista de dados, como contadores, utilizado para gravar nos arquivos persistentes e posterior troca com app
