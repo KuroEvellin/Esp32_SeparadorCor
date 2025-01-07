@@ -19,7 +19,7 @@ void Automatico()
     case AguardaPresencaPeca:
     {
       lcd.print("Aguardando peca");
-      if (SensorCor.corAtual.numeroColetor != 0)
+      if (SensorCor.corAtual.numeroColetor != 0 && false)
       {
         Auto.AutoG7 = MovimentaSeparadores;
       }
@@ -57,7 +57,7 @@ void Automatico()
     case AguardaColetor:
     {
       lcd.print("Aguarda coletor...");
-      delay(2000);
+      delay(500);
       Auto.AutoG7 = ContabilizaPeca;
       break;
     }

@@ -1,4 +1,6 @@
-int conectarWiFi() {
+
+int conectarWiFi() 
+{
   int delayTentativa = 1000;
   int tentativas = 3;
 
@@ -9,13 +11,18 @@ int conectarWiFi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(parametros.ssid, parametros.password);
 
-  while (true) {
-
-    switch (WiFi.status()) {
-      case WL_NO_SSID_AVAIL: Serial.println("[WiFi] Rede não encontrada!"); break;
-      case WL_CONNECT_FAILED: Serial.print("[WiFi] Falha na conexão WiFi!"); break;
-      case WL_CONNECTION_LOST: Serial.println("[WiFi] Conexão perdida"); break;
-      case WL_DISCONNECTED: Serial.println("[WiFi] WiFi está desconectado"); break;
+  while (true) 
+  {
+    switch (WiFi.status()) 
+    {
+      case WL_NO_SSID_AVAIL: Serial.println("[WiFi] Rede não encontrada!"); 
+        break;
+      case WL_CONNECT_FAILED: Serial.print("[WiFi] Falha na conexão WiFi!");
+        break;
+      case WL_CONNECTION_LOST: Serial.println("[WiFi] Conexão perdida");
+        break;
+      case WL_DISCONNECTED: Serial.println("[WiFi] WiFi está desconectado");
+        break;
       case WL_CONNECTED:
         Serial.println("[WiFi] WiFi conectado!");
         Serial.print("[WiFi] Endereço IP: ");
@@ -29,20 +36,21 @@ int conectarWiFi() {
     }
     delay(delayTentativa);
 
-    if (tentativas <= 0) {
+    if (tentativas <= 0) 
+    {
       Serial.print("[WiFi] Falha ao conectar com o WiFi!");
       WiFi.disconnect();
       return 0;
-    } else {
+    }
+    else 
+    {
       tentativas--;
     }
   }
 }
 
-WiFiClientSecure espClient;
-PubSubClient client(espClient);
-
-int conectarMQTT() {
+int conectarMQTT() 
+{
   int delayTentativa = 1000;
   int tentativas = 3;
 
@@ -90,24 +98,52 @@ int conectarMQTT() {
     }
     delay(delayTentativa);
 
-    if (tentativas <= 0) {
+    if (tentativas <= 0) 
+    {
       Serial.print("[MQTT] Falha ao conectar com o Broker!");
       WiFi.disconnect();
       return 0;
-    } else {
+    } 
+    else 
+    {
       tentativas--;
     }
   }
 }
 
-void callback(const char* topic, byte* payload, unsigned int length) {
-  String incommingMessage = "";
-  for (int i = 0; i < length; i++) incommingMessage+=(char)payload[i];
-
-  Serial.println("Mensagem recebida ["+String(topic)+"]"+incommingMessage);
+void reconnect() 
+{
+  while (!client.connected()) 
+  {
+    Serial.print("Tentado Reconectar ao Servidor MQTT");
+    String clientId = "ClienteESP32";
+    if (client.connect(clientId.c_str(), parametros.mqtt_username, parametros.mqtt_password)) 
+    {
+      client.setBufferSize(1024);
+      Serial.println("Conectado");
+      publicarMensagem("conexaoESP", "Conexão Iniciada", 0);
+      client.subscribe("parametros");
+      client.subscribe("conexaoESP");
+    }
+    else 
+    {
+      Serial.print("Falha ao Conectar, status = ");
+      Serial.print(client.state());
+      Serial.println("Tentando de novo em  5 segundos...");
+      delay(5000);
+    }
+  }
 }
 
-void publicarMensagem(const char* topic, String payload , boolean retained){
+void callback(const char* topic, byte* payload, unsigned int length)
+{
+  String incommingMessage = "";
+  for (int i = 0; i < length; i++) incommingMessage+=(char)payload[i];
+  Serial.println("Mensagem recebida ["+String(topic)+"] "+length+" bytes : "+incommingMessage);
+}
+
+void publicarMensagem(const char* topic, String payload , boolean retained)
+{
   if (client.publish(topic, payload.c_str(), true))
       Serial.println("Mensagem publicada ["+String(topic)+"]: "+payload);
 }

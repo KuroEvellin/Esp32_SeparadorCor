@@ -9,7 +9,6 @@
 #include <PubSubClient.h>
 #include <WiFiClientSecure.h>
 
-#define MQTT_VERSION MQTT_VERSION_3_1_1
 #define QUANTIDADE_CORES 8
 
 struct Cor // Declara estrutura para as cores
@@ -28,14 +27,14 @@ struct Parametros // Lista de parametros da máquina, utilizado para gravar nos 
   Cor cores[QUANTIDADE_CORES];
 
   // Configurações de WiFi
-  char* ssid = "your_wifi_ssid";
-  char* password = "your_wifi_password";
+  char* ssid = "LICAU3";
+  char* password = "ecmuu1111";
 
   // Configurações do Broker MQTT
-  char* mqtt_server = "34bab4bb63014dce9e71f4ad8fb6ffc2.s2.eu.hivemq.cloud";
-  char* mqtt_username = "your_mqtt_client_username";
-  char* mqtt_password = "your_mqtt_client_password";
-  int mqtt_port =8883;
+  char* mqtt_server = "77e0591acd6d4fb0b4cb6da7dc26b87b.s1.eu.hivemq.cloud";
+  char* mqtt_username = "Grupo";
+  char* mqtt_password = "SenhaSenha1";
+  int mqtt_port = 8883;
 };
 
 struct Dados // Lista de dados, como contadores, utilizado para gravar nos arquivos persistentes e posterior troca com app
@@ -88,6 +87,9 @@ LiquidCrystal_I2C lcd(0x27,16,2);  // Declaração do display LCD
 Parametros parametros; // Declaração do banco de parâmetros
 Dados dados; // Declaração do banco de dados para estatistica
 
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
+
 void setup() 
 {
   Init();
@@ -98,6 +100,11 @@ void loop()
   SensorCorMain();
   Automatico();
   ServosMain();
+  if (!client.connected()) 
+  {
+    reconnect();
+  }
+  client.loop();
 
   lcd.setCursor(0,1);
   lcd.print("");

@@ -48,15 +48,21 @@ void Init()
   // Carrega dados salvos SD
   CarregaDadosSD(SD, "/Teste");
 
+  parametros.ssid = "LICAU3";
+  parametros.password  = "ecmuu1111";
+  parametros.mqtt_server = "77e0591acd6d4fb0b4cb6da7dc26b87b.s1.eu.hivemq.cloud";
+  parametros.mqtt_username = "Grupo";
+  parametros.mqtt_password = "SenhaSenha1";
+  parametros.mqtt_port = 8883;
+
   // Inicializa Comunicação
-  if(conectarWiFi()) {
+  if(conectarWiFi()) 
+  { 
     // Caso conecte com WiFi, irá tentar conexão com Broker
     espClient.setInsecure();
     client.setServer(parametros.mqtt_server, parametros.mqtt_port);
+    client.subscribe("parametros");
     client.setCallback(callback);
-    if(conectarMQTT()) {
-      publicarMensagem("conexaoESP", "Conexão Iniciada", 0);
-    }
   }
 
   // Dados mocados para teste
