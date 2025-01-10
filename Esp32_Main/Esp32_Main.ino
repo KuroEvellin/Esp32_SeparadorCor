@@ -27,8 +27,8 @@ struct Parametros // Lista de parametros da máquina, utilizado para gravar nos 
   Cor cores[QUANTIDADE_CORES];
 
   // Configurações de WiFi
-  char* ssid = "LICAU3";
-  char* password = "ecmuu1111";
+  char* ssid = "";
+  char* password = "";
 
   // Configurações do Broker MQTT
   char* mqtt_server = "77e0591acd6d4fb0b4cb6da7dc26b87b.s1.eu.hivemq.cloud";
@@ -79,6 +79,9 @@ AutoDB Auto; // Instancia de dados globais do Automático
 SensorCorDB SensorCor; // Instancia dos dados globais do sensor de cor
 
 bool movimentoConcluido = false; // Variavel global para controle de movimento dos servos
+bool portaAberta = false;
+bool novaMensagem = false;
+
 
 Servo porta, direcionadorED, direcionador12, direcionador34; // Declaração dos servos
 Adafruit_TCS34725 sensTCS = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_300MS, TCS34725_GAIN_1X); // Declaração do sensor de cor
@@ -103,8 +106,13 @@ void loop()
   if (!client.connected()) 
   {
     reconnect();
+    publicarMensagem("parametrosReceber", montaJsonParametros(), false); 
   }
-  client.loop();
+  else
+  {
+    client.loop();
+    publicarMensagem("monitoramentoReceber", montaJsonMonitoramento(), false);
+  }
 
   lcd.setCursor(0,1);
   lcd.print("");

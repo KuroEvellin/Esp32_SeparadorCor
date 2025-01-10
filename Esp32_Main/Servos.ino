@@ -66,6 +66,7 @@ void ServoAbrePorta()
   porta.write(parametros.PosicaoServoPorta[0]);
   delay(200);
   movimentoConcluido = true;
+  portaAberta = true;
 }
 
 void ServoFechaPorta()
@@ -73,6 +74,7 @@ void ServoFechaPorta()
   porta.write(parametros.PosicaoServoPorta[1]);
   delay(200);
   movimentoConcluido = true;
+  portaAberta = false;
 }
 
 void ServoPosicaoIncial()

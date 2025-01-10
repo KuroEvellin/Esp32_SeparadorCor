@@ -52,6 +52,7 @@ void JulgaCor()
   SensorCor.corAtual.b = bn;
   SensorCor.corAtual.numeroColetor = posicaoColetor;
   SensorCor.numeroCor = corMaisProxima;
+  
   /*
   Serial.print("R: ");
   Serial.print(rn);

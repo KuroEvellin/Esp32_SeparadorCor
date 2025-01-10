@@ -19,7 +19,7 @@ void Automatico()
     case AguardaPresencaPeca:
     {
       lcd.print("Aguardando peca");
-      if (SensorCor.corAtual.numeroColetor != 0 && false)
+      if (SensorCor.corAtual.numeroColetor != 0)
       {
         Auto.AutoG7 = MovimentaSeparadores;
       }
@@ -88,6 +88,7 @@ void Automatico()
     {
       lcd.print("Gravando dados...");
       GravaDadosSD(SD, "/Teste");
+      publicarMensagem("estatisticasReceber", montaJsonEstatisticas(), false);
       Auto.AutoG7 = AguardaPresencaPeca;
       break;
     }
