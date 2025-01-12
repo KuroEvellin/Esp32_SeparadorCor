@@ -82,6 +82,8 @@ bool movimentoConcluido = false; // Variavel global para controle de movimento d
 bool portaAberta = false;
 bool novaMensagem = false;
 
+int ciclosMonitoramento = 0;
+
 
 Servo porta, direcionadorED, direcionador12, direcionador34; // Declaração dos servos
 Adafruit_TCS34725 sensTCS = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_300MS, TCS34725_GAIN_1X); // Declaração do sensor de cor
@@ -107,11 +109,18 @@ void loop()
   {
     reconnect();
     publicarMensagem("parametrosReceber", montaJsonParametros(), false); 
+    publicarMensagem("estatisticasReceber", montaJsonEstatisticas(), false);
   }
   else
   {
+    if(ciclosMonitoramento <= 0)
+    {
+      publicarMensagem("monitoramentoReceber", montaJsonMonitoramento(), false);
+      ciclosMonitoramento = 2;
+    }
+    else
+      ciclosMonitoramento = ciclosMonitoramento - 1;
     client.loop();
-    publicarMensagem("monitoramentoReceber", montaJsonMonitoramento(), false);
   }
 
   lcd.setCursor(0,1);

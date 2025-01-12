@@ -1,7 +1,7 @@
 
 int conectarWiFi() 
 {
-  int delayTentativa = 1000;
+  int delayTentativa = 5000;
   int tentativas = 3;
 
   Serial.println();
