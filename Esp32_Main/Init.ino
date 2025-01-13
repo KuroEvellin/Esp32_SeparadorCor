@@ -50,7 +50,7 @@ void Init()
 
   parametros.ssid = "Kuro Server";
   parametros.password  = "15987532";
-  parametros.mqtt_server = "478205bdc32043968267403d6e2796a5.s1.eu.hivemq.cloud";
+  parametros.mqtt_server = "4b5548dcb4844ac9bd65c4373c6b8537.s1.eu.hivemq.cloud";
   parametros.mqtt_username = "Grupo";
   parametros.mqtt_password = "SenhaSenha1";
   parametros.mqtt_port = 8883;
